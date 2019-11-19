@@ -74,6 +74,9 @@ class PlaidLink extends Component {
     // that user's institution.
     token: PropTypes.string,
 
+    // institution
+    institution: PropTypes.string,
+
     // Specify a user object to enable all Auth features. Reach out to your
     // account manager or integrations@plaid.com to get enabled. See the Auth
     // [https://plaid.com/docs#auth] docs for integration details.
@@ -149,11 +152,14 @@ class PlaidLink extends Component {
   }
 
   handleOnClick(event) {
+    const institution = this.props.institution || null;
+    console.log('institution :', institution);
+
     if (this.props.onClick != null) {
       this.props.onClick(event);
     }
     if (this.linkHandler) {
-      this.linkHandler.open();
+      this.linkHandler.open(institution);
     }
   }
 
